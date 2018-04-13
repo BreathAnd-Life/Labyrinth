@@ -1,0 +1,27 @@
+public class AudioManager : MonoBehaviour
+{
+	public static AudioManager Instance;
+  public AudioClip bomb;
+  public AudioClip coin;
+
+  private AudioSource player;
+	
+  void Awake(){
+		Instance = this;
+    player = GetComponent<AudioSource> ();
+	}
+
+	public void PlayBomb()
+	{
+		player.PlayOneShot(bomb);
+	}
+  
+  public void PlayCoin()
+	{
+		player.PlayOneShot(coin);
+	} 
+}
+
+//然后分别在PlayerControl和CoinControl的脚本中播放爆炸声音
+//AudioManager.Instance.PlayBomb();
+//AudioManager.Instance.PlayCoin();
