@@ -1,0 +1,51 @@
+public class PlayerControl : MonoBehaviour
+{
+	//碰撞效果
+	public GameObject Hitpre;
+	//爆炸效果
+	public GameObject Bombpre;
+
+	//血量
+	public int hp = 3;
+
+	private Rigidbody rBody;
+
+	void Start()
+	{
+		rBody = GetComponent<Rigidbody> ();
+	}
+
+	void Update(){
+
+		//垂直轴
+		float vertical = Input.GetAxis("Vertical");
+		//水平轴
+		float horizontal = Input.GetAxis("Horizontal");
+		//方向
+		Vector3 dir = new Vector3(horizontal,0,vertical);
+		if (dir != Vector3.zero) 
+		{
+			//移动
+			rBody.velocity = dir * 2;
+		}
+
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.collider.tag == "Wall") 
+		{
+		
+			hp--;
+			if(hp<=0)
+			{
+				Instantiate(Bombpre,transform.position,Quaternion.identity);
+				Destroy(gameObject);
+			}
+			else
+			{
+				Instantiate(Hitpre,collision.contacts[0].point,Quaternion.identity);
+			}
+		}
+	}
+}
