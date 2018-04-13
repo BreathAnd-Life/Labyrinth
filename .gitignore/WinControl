@@ -1,0 +1,19 @@
+public class WinControl : MonoBehaviour
+{
+	public TextMesh Text;
+	void Start()
+	{
+	}
+
+	void Update()
+	{
+	}
+
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.tag == "Player") 
+		{
+			Text.text = "胜利";
+		}
+	}
+}
