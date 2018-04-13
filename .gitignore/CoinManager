@@ -1,6 +1,7 @@
 public class CoinManager : MonoBehaviour
 {
 	public GameObject Door;
+	
 	void Start()
 	{
 	}
